@@ -1,0 +1,29 @@
+#components-layout-demo-side .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+  margin: "24px 16px";
+  padding: 24;
+  min-height: 280;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+footer p {
+  margin-bottom: 0.5em;
+}
+
+footer p a{
+  margin-left: 0.75em;
+  color:inherit;
+  text-decoration: underline;
+}
+footer p a:hover{
+  text-decoration: underline;
+}
