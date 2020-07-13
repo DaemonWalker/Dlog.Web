@@ -1,3 +1,4 @@
+import { ArticleModel } from './articleModel'
 import { ArticleSummaryModel } from './articleSummaryModel'
 import { NavDataModel } from './navDataModel'
 import { ServerResponseModel } from './serverResponseModel'
@@ -9,4 +10,5 @@ export interface ResponseModel {
     token: string;
     indexArticles: ArticleSummaryModel[];
     timeLine: TimelineNodeModel[];
+    article: ArticleModel;
 }

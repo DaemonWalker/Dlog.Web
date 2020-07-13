@@ -1,12 +1,12 @@
+import { EyeOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import { Avatar, List } from 'antd';
 import React from 'react';
-import { List, Avatar } from 'antd';
-import { MessageOutlined, LikeOutlined, EyeOutlined } from '@ant-design/icons';
-import { ArticleSummaryModel } from '../models/articleSummaryModel'
+import { ArticleStatics } from '../components/articleStatics';
+import MyAvatar from '../contents/avatar/me.jpg';
+import { ArticleSummaryModel } from '../models/articleSummaryModel';
+import { ResponseModel } from '../models/responseModel';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
-import { ResponseModel } from '../models/responseModel';
-import { ArticleStatics } from '../components/articleStatics'
-import MyAvatar from '../contents/avatar/me.jpg'
 
 export class Home extends React.Component<IProps, IState> {
     render() {
@@ -39,7 +39,7 @@ export class Home extends React.Component<IProps, IState> {
                     >
                         <List.Item.Meta
                             avatar={<Avatar src={MyAvatar} />}
-                            title={<a href={`acrticle/${item.url}`}>{item.title}</a>} />
+                            title={<a href={`article/${item.url}`}>{item.title}</a>} />
                         {item.summary}
                     </List.Item>
                 )}

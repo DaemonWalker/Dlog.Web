@@ -2,17 +2,13 @@ import { GithubOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Navbar } from './components/navbar';
 import { NavDataModel } from './models/navDataModel';
 import { ResponseModel } from './models/responseModel';
-import { Article } from './pages/article';
-import { ArticleTimeline } from './pages/articleTimeline';
-import { Home } from './pages/home';
-import { Tags } from './pages/tags';
 import './styles/app.css';
 import { ApiUtil } from './utils/apiUtil';
 import { Constant } from './utils/constants';
+import { GlobalRouter } from './components/globalRouter'
 
 const { Header, Content, Footer } = Layout;
 
@@ -27,16 +23,8 @@ class App extends React.Component<IProps, IState> {
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: '24px 16px 0' }}>
-
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              <BrowserRouter>
-                <Switch>
-                  <Route path="/" exact component={Home} />
-                  <Route path="/tags/:id?" component={Tags} />
-                  <Route path="/article/:id?" component={Article} />
-                  <Route path="/timeline/:id" component={ArticleTimeline} />
-                </Switch>
-              </BrowserRouter>
+            <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
+              <GlobalRouter></GlobalRouter>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

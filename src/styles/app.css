@@ -19,11 +19,28 @@ footer p {
   margin-bottom: 0.5em;
 }
 
-footer p a{
+footer p a {
   margin-left: 0.75em;
-  color:inherit;
+  color: inherit;
   text-decoration: underline;
 }
-footer p a:hover{
+footer p a:hover {
   text-decoration: underline;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-panel {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.article-loading {
+  flex: 1;
+  align-items: center;
+  text-align: center;
 }
