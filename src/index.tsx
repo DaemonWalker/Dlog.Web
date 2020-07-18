@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Article } from './pages/article';
-import { ArticleTimeline } from './pages/articleTimeline';
-import { Home } from './pages/home';
-import { Tags } from './pages/tags';
 
 document.title = "精灵の小小窝"
 ReactDOM.render(

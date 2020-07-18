@@ -8,7 +8,7 @@ export interface ResponseModel {
     serverResponse: ServerResponseModel;
     navData: NavDataModel;
     token: string;
-    indexArticles: ArticleSummaryModel[];
+    articleSummaries: ArticleSummaryModel[];
     timeLine: TimelineNodeModel[];
     article: ArticleModel;
 }
