@@ -13,13 +13,21 @@ import { GlobalRouter } from './components/globalRouter'
 const { Header, Content, Footer } = Layout;
 
 class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      collapsed: false,
+      navData: {
+        recents: [],
+        tags: [],
+        timeLine: []
+      }
+    };
+  }
   render() {
     return (
       <Layout className="App">
-        {
-          this.state && this.state.navData &&
-          <Navbar data={this.state.navData} />
-        }
+        <Navbar data={this.state.navData} />
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: '24px 16px 0' }}>

@@ -30,10 +30,10 @@ export class ApiUtil {
     private static handleResponse(pro: Promise<any>, success: (res: ResponseModel) => any, error?: (e: any) => any) {
         pro.then(
             (res: ResponseModel) => {
-                if (res.serverResponse.statusCode == 200) {
+                if (res.serverResponse.statusCode === 200) {
                     success(res);
                 }
-                else if (res.serverResponse.statusCode == 401) {
+                else if (res.serverResponse.statusCode === 401) {
 
                 }
                 else {
