@@ -3,20 +3,19 @@ import { Constant } from './constants';
 import { StorageUtil } from './storageUtil';
 export class ApiUtil {
     static Get(url: string, success: (res: ResponseModel) => any, data?: any, error?: (e: any) => any) {
-        this.handleResponse(fetch(url,{
-            
+        this.handleResponse(fetch(url, {
+
         }).then(res => res.json()), success, error);
     }
     static Post(url: string, data: any, success: (res: ResponseModel) => any, error?: (e: any) => any) {
         this.handleResponse(fetch(url, {
-            method: "POST",
+            method: "post",
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${StorageUtil.getJwt()}`
+                'Accept': 'application/json'
             }
-        }), success, error);
+        }).then(res => res.json()), success, error);
     }
     static FetchAccessToken(account: string, password: string) {
         this.Post(
@@ -26,10 +25,14 @@ export class ApiUtil {
                 StorageUtil.setJwt(res.token);
             });
     }
-    
+
     private static handleResponse(pro: Promise<any>, success: (res: ResponseModel) => any, error?: (e: any) => any) {
         pro.then(
             (res: ResponseModel) => {
+                if (!(res && res.serverResponse && res.serverResponse.statusCode)) {
+                    console.error(res);
+                    return;
+                }
                 if (res.serverResponse.statusCode === 200) {
                     success(res);
                 }
