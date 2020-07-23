@@ -1,29 +1,34 @@
-import { Spin, Timeline } from 'antd';
+import { Timeline } from 'antd';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ResponseModel } from '../models/responseModel';
 import { TimelineNodeModel } from '../models/timelineNodeModel';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
+import { Loading } from '../components/loading'
+import { HyperLink } from '../components/hyperLink';
 
 export class ArticleTimeline extends React.Component<IProps, IState> {
-
+    constructor(props: IProps) {
+        super(props);
+        this.state = { timeline: [] };
+    }
     render() {
         return (
             <div>
-                {
-                    this.state && this.state.timeline ?
-                        <Timeline mode="left">
-                            {
-                                this.state.timeline.map((ele: TimelineNodeModel) => {
-                                    return (
-                                        <Timeline.Item label={ele.blogDate} key={new Date().getUTCMilliseconds() + Math.random()}>{ele.title}</Timeline.Item>
-                                    )
-                                })
-                            }
-                        </Timeline> :
-                        <Spin size="large" />
-                }
+
+                <Timeline mode="left">
+                    {
+                        this.state.timeline.map((ele: TimelineNodeModel) => {
+                            return (
+                                <Timeline.Item label={ele.blogDate} key={new Date().getUTCMilliseconds() + Math.random()}>
+                                    <HyperLink href={encodeURI(`/article/${ele.url}`)} text={ele.title} />
+                                </Timeline.Item>
+                            )
+                        })
+                    }
+                </Timeline>
+                <Loading isLoading={!(this.state && this.state.timeline && this.state.timeline.length > 0)} />
             </div>
         )
     }

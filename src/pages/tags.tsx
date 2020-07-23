@@ -13,19 +13,27 @@ import { ArticleSummaryList } from '../components/articleSummaryList';
 export class Tags extends React.Component<IProps, IState>{
     constructor(props: IProps) {
         super(props);
-        this.state = { articles: [] };
+        this.state = {
+            articles: [],
+            isLoading: true
+        };
     }
     render() {
         return (
-            <ArticleSummaryList articleSummaries={this.state.articles}></ArticleSummaryList>
+            <ArticleSummaryList articleSummaries={this.state.articles} isLoading={this.state.isLoading}></ArticleSummaryList>
         )
     }
 
     componentDidMount() {
-        ApiUtil.Get(`${Constant.URL_TAGARTICLES}/${this.props.match.params.id}`,
+        ApiUtil.Post(Constant.URL_TAGARTICLES,
+            this.props.match.params.id,
             (res: ResponseModel) => {
                 this.setState({
                     articles: res.articleSummaries
+                }, () => {
+                    this.setState({
+                        isLoading: false
+                    })
                 })
             });
     }
@@ -35,5 +43,6 @@ interface MatchParams {
 }
 export interface IProps extends RouteComponentProps<MatchParams> { }
 export interface IState {
-    articles: ArticleSummaryModel[];
+    articles: ArticleSummaryModel[],
+    isLoading: boolean
 }

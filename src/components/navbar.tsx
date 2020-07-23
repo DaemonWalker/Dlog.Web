@@ -4,6 +4,7 @@ import 'antd/dist/antd.css'
 import React from 'react'
 import { NavDataModel } from '../models/navDataModel'
 import '../styles/navbar.css'
+import { HyperLink } from './hyperLink'
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -32,12 +33,12 @@ export class Navbar extends React.Component<IProps, IState> {
                 }}>
                 <div className="logo" >
                     <Row justify="space-around" align="middle">
-                        <a href="/">
+                        <HyperLink href="/" text={(
                             <Title level={3}>
                                 <Text type="danger">♥</Text>
                                 <Text type="warning">❀</Text>
                             </Title>
-                        </a>
+                        )} />
                     </Row>
                 </div>
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -45,7 +46,7 @@ export class Navbar extends React.Component<IProps, IState> {
                         {
                             this.props.data.recents.map(e => (
                                 <Menu.Item key={new Date().getDate() + Math.random()}>
-                                    <a href={`/article/${e.url}`}>{e.content}</a>
+                                    <HyperLink href={`/article/${e.url}`} text={e.content} />
                                 </Menu.Item>
                             ))
                         }
@@ -54,7 +55,7 @@ export class Navbar extends React.Component<IProps, IState> {
                         {
                             this.props.data.tags.map(e => (
                                 <Menu.Item key={new Date().getDate() + Math.random()}>
-                                    <a href={`/tags/${e.url}`}>{e.content}</a>
+                                    <HyperLink href={`/tags/${e.url}`} text={e.content} />
                                 </Menu.Item>
                             ))
                         }
@@ -63,7 +64,7 @@ export class Navbar extends React.Component<IProps, IState> {
                         {
                             this.props.data.timeLine.map(e => (
                                 <Menu.Item key={new Date().getDate() + Math.random()}>
-                                    <a href={`/timeline/${e.url}`}>{e.content}</a>
+                                    <HyperLink href={`/timeline/${e.url}`} text={e.content} />
                                 </Menu.Item>
                             ))
                         }

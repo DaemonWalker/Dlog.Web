@@ -8,37 +8,36 @@ import { ResponseModel } from '../models/responseModel';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
 import { Typography, Space, Tag } from 'antd';
+import { Loading } from '../components/loading';
 const { Title, Text } = Typography;
 
 export class Article extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
+        super(props);
+        this.state = { article: null };
+    }
     render() {
         return (
             <div className="article-panel">
-                {
-                    this.state && this.state.article ?
-                        <div>
-                            <Title>{this.state.article.title}</Title>
-                            <Space size="large">
-                                <Text type="secondary">{this.state.article.date}</Text>
-                                <Space>
-                                    {this.state.article.tags.map((ele: string) => (
-                                        <Tag key={Math.random()}>{ele}</Tag>
-                                    ))}
-                                </Space>
-                            </Space>
-                            <ReactMarkdown
-                                source={this.state.article.content}
-                                escapeHtml={false}
-                                skipHtml={false}
-                                renderers={{
-                                    code: CodeLigher
-                                }} />
-                        </div>
-                        :
-                        <Row justify="center" align="middle" style={{ width: "100%" }}>
-                            <Spin size="large"></Spin>
-                        </Row>
-                }
+                <div>
+                    <Title>{this.state.article?.title}</Title>
+                    <Space size="large">
+                        <Text type="secondary">{this.state.article?.date}</Text>
+                        <Space>
+                            {this.state.article?.tags.map((ele: string) => (
+                                <Tag key={Math.random()}>{ele}</Tag>
+                            ))}
+                        </Space>
+                    </Space>
+                    <ReactMarkdown
+                        source={this.state.article?.content}
+                        escapeHtml={false}
+                        skipHtml={false}
+                        renderers={{
+                            code: CodeLigher
+                        }} />
+                </div>
+                <Loading isLoading={!(this.state && this.state.article)}></Loading>
             </div>
         )
     }
@@ -60,5 +59,5 @@ interface MatchParams {
 }
 export interface IProps extends RouteComponentProps<MatchParams> { }
 export interface IState {
-    article: ArticleModel
+    article: ArticleModel | null
 }

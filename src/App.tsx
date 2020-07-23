@@ -8,7 +8,12 @@ import { ResponseModel } from './models/responseModel';
 import './styles/app.css';
 import { ApiUtil } from './utils/apiUtil';
 import { Constant } from './utils/constants';
-import { GlobalRouter } from './components/globalRouter'
+import { HyperLink } from './components/hyperLink';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Home } from './pages/home';
+import { Tags } from './pages/tags';
+import { Article } from './pages/article';
+import { ArticleTimeline } from './pages/articleTimeline';
 
 const { Header, Content, Footer } = Layout;
 
@@ -25,37 +30,43 @@ class App extends React.Component<IProps, IState> {
     };
   }
   render() {
-    return (
+    return (<BrowserRouter>
       <Layout className="App">
         <Navbar data={this.state.navData} />
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: '24px 16px 0' }}>
             <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
-              <GlobalRouter></GlobalRouter>
+              <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate()}></Home>)} component={Home} />
+              <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate()}></Tags>)} key="Tags" />
+              <Route path="/article/:id?" render={(props) => (<Article {...props} key={new Date().getDate()}></Article>)} key="Article" />
+              <Route path="/timeline/:id" component={ArticleTimeline} key={new Date().getDate()} />
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
             <p>
-              <a href="https://github.com/DaemonWalker"><GithubOutlined style={{ fontSize: '3em' }} /></a>
+              <HyperLink href="https://github.com/DaemonWalker" text={(
+                <GithubOutlined style={{ fontSize: '3em' }} />
+              )} target="_blank" />
             </p>
             <p>
               {`© ${new Date().getFullYear()} Daemon Walker`}
             </p>
             <p>
               Powered by
-                <a href="https://react.docschina.org/">React</a>
-              <a href="https://ant.design/index-cn">Ant Desgin(antd)</a>
-              <a href="https://dotnet.microsoft.com/">.Net Core</a>
-              <a href="https://www.cenhrefs.org/">CenhrefS</a>
-              <a href="https://www.docker.com/">Docker</a>
+              <HyperLink href="https://react.docschina.org/" text="React" target="_blank" />
+              <HyperLink href="https://ant.design/index-cn" text="Ant Desgin(antd)" target="_blank" />
+              <HyperLink href="https://dotnet.microsoft.com/" text=".Net Core" target="_blank" />
+              <HyperLink href="https://www.centos.org/" text="CentOS" target="_blank" />
+              <HyperLink href="https://www.docker.com/" text="Docker" target="_blank" />
             </p>
             <p>
-              <a href="http://www.beian.gov.cn/portal/registerSystemInfo">辽ICP备16008708号-1</a>
+              <HyperLink href="http://www.beian.gov.cn/portal/registerSystemInfo" text="辽ICP备16008708号-1" target="_blank" />
             </p>
           </Footer>
         </Layout>
       </Layout>
+    </BrowserRouter>
     );
   }
 
