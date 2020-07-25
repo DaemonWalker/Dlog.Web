@@ -35,7 +35,7 @@ footer p a:hover {
 
 .article-panel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
 }
 
@@ -48,4 +48,12 @@ footer p a:hover {
 .loading {
   flex: 1;
   flex-grow: 1;
+}
+
+.articleContent {
+  padding-top: 30px;
+}
+
+.header-row {
+  padding-right: 15px;
 }
