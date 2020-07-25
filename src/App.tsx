@@ -1,5 +1,5 @@
-import { GithubOutlined } from '@ant-design/icons';
-import { Layout } from 'antd';
+import { GithubOutlined, SearchOutlined } from '@ant-design/icons';
+import { Layout, Row, Input, Col } from 'antd';
 import 'antd/dist/antd.css';
 import React from 'react';
 import { Navbar } from './components/navbar';
@@ -9,82 +9,110 @@ import './styles/app.css';
 import { ApiUtil } from './utils/apiUtil';
 import { Constant } from './utils/constants';
 import { HyperLink } from './components/hyperLink';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Home } from './pages/home';
 import { Tags } from './pages/tags';
 import { Article } from './pages/article';
 import { ArticleTimeline } from './pages/articleTimeline';
+import { SearchResult } from './pages/searchResult'
+import { StorageUtil } from './utils/storageUtil';
 
 const { Header, Content, Footer } = Layout;
+const { Search } = Input;
 
 class App extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      collapsed: false,
-      navData: {
-        recents: [],
-        tags: [],
-        timeLine: []
-      }
-    };
-  }
-  render() {
-    return (<BrowserRouter>
-      <Layout className="App">
-        <Navbar data={this.state.navData} />
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content style={{ margin: '24px 16px 0' }}>
-            <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
-              <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate()}></Home>)} component={Home} />
-              <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate()}></Tags>)} key="Tags" />
-              <Route path="/article/:id?" render={(props) => (<Article {...props} key={new Date().getDate()}></Article>)} key="Article" />
-              <Route path="/timeline/:id" component={ArticleTimeline} key={new Date().getDate()} />
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            <p>
-              <HyperLink href="https://github.com/DaemonWalker" text={(
-                <GithubOutlined style={{ fontSize: '3em' }} />
-              )} target="_blank" />
-            </p>
-            <p>
-              {`© ${new Date().getFullYear()} Daemon Walker`}
-            </p>
-            <p>
-              Powered by
-              <HyperLink href="https://react.docschina.org/" text="React" target="_blank" />
-              <HyperLink href="https://ant.design/index-cn" text="Ant Desgin(antd)" target="_blank" />
-              <HyperLink href="https://dotnet.microsoft.com/" text=".Net Core" target="_blank" />
-              <HyperLink href="https://www.centos.org/" text="CentOS" target="_blank" />
-              <HyperLink href="https://www.docker.com/" text="Docker" target="_blank" />
-            </p>
-            <p>
-              <HyperLink href="http://www.beian.gov.cn/portal/registerSystemInfo" text="辽ICP备16008708号-1" target="_blank" />
-            </p>
-          </Footer>
-        </Layout>
-      </Layout>
-    </BrowserRouter>
-    );
-  }
+    tempFilter: string = "";
 
-  componentDidMount() {
-    ApiUtil.Get(
-      Constant.URL_NAV,
-      (res: ResponseModel) => {
+    constructor(props: IProps) {
+        super(props);
+        this.state = {
+            collapsed: false,
+            navData: {
+                recents: [],
+                tags: [],
+                timeLine: []
+            },
+            filter: ""
+        };
+    }
+    setFilter(e: React.ChangeEvent<HTMLInputElement>) {
         this.setState({
-          navData: res.navData
+            filter: e.target.value
         })
-      });
-  }
+    }
+    render() {
+        return (
+            <BrowserRouter>
+                <Layout className="App">
+                    <Navbar data={this.state.navData} />
+                    <Layout className="site-layout">
+                        <Header className="site-layout-background" style={{ padding: 0 }} >
+                            <Row style={{ display: 'inline-flex', width: "100%" }} justify="end">
+                                <Col xs={20} sm={16} md={12} lg={8} xl={6} xxl={4} className="header-row">
+                                    <Search
+                                        placeholder="input search text"
+                                        enterButton={(
+                                            <Link to={`/search/${this.state.filter}`}><SearchOutlined /></Link>
+                                        )}
+                                        size="large"
+                                        style={{ display: 'inline-block', verticalAlign: 'middle' }}
+                                        onChange={(e) => this.setFilter(e)}
+                                    />
+                                </Col>
+                            </Row>
+                        </Header>
+                        <Content style={{ margin: '24px 16px 0' }}>
+                            <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
+                                <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
+                                <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate() + Math.random()}></Tags>)} key="Tags" />
+                                <Route path="/article/:id?" render={(props) => (<Article {...props} key={new Date().getDate() + Math.random()}></Article>)} />
+                                <Route path="/timeline/:id" component={ArticleTimeline} key={new Date().getDate() + Math.random()} />
+                                <Route path="/search/:filter?" exact component={SearchResult} />
+                            </div>
+                        </Content>
+                        <Footer style={{ textAlign: 'center' }}>
+                            <p>
+                                <HyperLink href="https://github.com/DaemonWalker" text={(
+                                    <GithubOutlined style={{ fontSize: '3em' }} />
+                                )} target="_blank" />
+                            </p>
+                            <p>
+                                {`© ${new Date().getFullYear()} Daemon Walker`}
+                            </p>
+                            <p>
+                                Powered by
+              <HyperLink href="https://react.docschina.org/" text="React" target="_blank" />
+                                <HyperLink href="https://ant.design/index-cn" text="Ant Desgin(antd)" target="_blank" />
+                                <HyperLink href="https://dotnet.microsoft.com/" text=".Net Core" target="_blank" />
+                                <HyperLink href="https://www.centos.org/" text="CentOS" target="_blank" />
+                                <HyperLink href="https://www.docker.com/" text="Docker" target="_blank" />
+                            </p>
+                            <p>
+                                <HyperLink href="http://www.beian.gov.cn/portal/registerSystemInfo" text="辽ICP备16008708号-1" target="_blank" />
+                            </p>
+                        </Footer>
+                    </Layout>
+                </Layout>
+            </BrowserRouter>
+        );
+    }
+
+    componentDidMount() {
+        ApiUtil.Get(
+            Constant.URL_NAV,
+            (res: ResponseModel) => {
+                this.setState({
+                    navData: res.navData
+                })
+            });
+    }
 }
 
 export interface IProps { }
 export interface IState {
-  navData: NavDataModel
-  collapsed: boolean
+    navData: NavDataModel
+    collapsed: boolean,
+    filter: string
 }
 
 export default App;

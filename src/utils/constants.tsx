@@ -7,6 +7,7 @@ export class Constant {
     static readonly URL_TIMELINE: string = `${Constant.URL_API_BASE}Summary/GetTimeLine`;
     static readonly URL_ARTICLE: string = `${Constant.URL_API_BASE}Article/Get`;
     static readonly URL_TAGARTICLES: string = `${Constant.URL_API_BASE}Summary/GetArticlesByTag`;
+    static readonly URL_SEARCH: string = `${Constant.URL_API_BASE}Search/Get`
 
     static readonly STORAGEKEY_JWT: string = "AUTHJWT";
 
