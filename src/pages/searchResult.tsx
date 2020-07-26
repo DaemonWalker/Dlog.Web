@@ -2,12 +2,10 @@ import React from 'react'
 import { List } from 'antd'
 import { SearchResultModel } from '../models/searchResultModel';
 import { Loading } from '../components/loading';
-import { StorageUtil } from '../utils/storageUtil';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
 import { ResponseModel } from '../models/responseModel';
 import { RouteComponentProps } from 'react-router';
-import { Link } from 'react-router-dom';
 import { HyperLink } from '../components/hyperLink';
 
 export class SearchResult extends React.Component<IProps, IState> {

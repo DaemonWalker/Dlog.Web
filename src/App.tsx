@@ -15,7 +15,6 @@ import { Tags } from './pages/tags';
 import { Article } from './pages/article';
 import { ArticleTimeline } from './pages/articleTimeline';
 import { SearchResult } from './pages/searchResult'
-import { StorageUtil } from './utils/storageUtil';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -50,7 +49,7 @@ class App extends React.Component<IProps, IState> {
                             <Row style={{ display: 'inline-flex', width: "100%" }} justify="end">
                                 <Col xs={20} sm={16} md={12} lg={8} xl={6} xxl={4} className="header-row">
                                     <Search
-                                        placeholder="input search text"
+                                        placeholder="请输入你想搜索的内容"
                                         enterButton={(
                                             <Link to={`/search/${this.state.filter}`}><SearchOutlined /></Link>
                                         )}
@@ -65,8 +64,8 @@ class App extends React.Component<IProps, IState> {
                             <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
                                 <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
                                 <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate() + Math.random()}></Tags>)} key="Tags" />
-                                <Route path="/article/:id?" render={(props) => (<Article {...props} key={new Date().getDate() + Math.random()}></Article>)} />
-                                <Route path="/timeline/:id" component={ArticleTimeline} key={new Date().getDate() + Math.random()} />
+                                <Route path="/article/:id?" render={(props) => (<Article {...props}></Article>)} />
+                                <Route path="/timeline/:id" component={ArticleTimeline} />
                                 <Route path="/search/:filter?" exact component={SearchResult} />
                             </div>
                         </Content>
