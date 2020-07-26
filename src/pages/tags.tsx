@@ -1,10 +1,6 @@
 import React from 'react';
-import { Avatar, List } from 'antd';
 import { RouteComponentProps } from 'react-router';
-import { ArticleStatics } from '../components/articleStatics';
-import { EyeOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
 import { ArticleSummaryModel } from '../models/articleSummaryModel';
-import MyAvatar from '../contents/avatar/me.jpg';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
 import { ResponseModel } from '../models/responseModel';

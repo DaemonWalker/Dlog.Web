@@ -3,7 +3,7 @@ import { ArticleSummaryModel } from '../models/articleSummaryModel';
 import { Avatar, List } from 'antd';
 import { ArticleStatics } from '../components/articleStatics';
 import MyAvatar from '../contents/avatar/me.jpg';
-import { EyeOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import { EyeOutlined } from '@ant-design/icons';
 import { ImageUtil } from '../utils/imageUtil'
 import { Loading } from './loading';
 import { HyperLink } from '../components/hyperLink';
@@ -28,9 +28,7 @@ export class ArticleSummaryList extends React.Component<IProps> {
                                 <List.Item
                                     key={item.title}
                                     actions={[
-                                        <ArticleStatics icon={EyeOutlined} number={item.seen} key="list-vertical-star-o" />,
-                                        // <ArticleStatics icon={LikeOutlined} number={item.likes} key="list-vertical-like-o" />,
-                                        // <ArticleStatics icon={MessageOutlined} number={item.comments} key="list-vertical-message" />,
+                                        <ArticleStatics icon={EyeOutlined} number={item.seen} key="list-vertical-star-o" />
                                     ]}
                                     extra={
                                         <img

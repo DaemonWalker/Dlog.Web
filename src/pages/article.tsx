@@ -1,4 +1,3 @@
-import { Row, Spin } from 'antd';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ArticleModel } from '../models/articleModel';
@@ -21,7 +20,8 @@ export class Article extends React.Component<IProps, IState> {
                 date: "",
                 seen: 0
             },
-            isLoading: true
+            isLoading: true,
+            id: ""
         };
     }
     render() {
@@ -59,6 +59,23 @@ export class Article extends React.Component<IProps, IState> {
                 })
             })
     }
+    
+    componentWillReceiveProps(nextProps: IProps) {
+        if (this.props?.match?.params?.id === undefined ||
+            this.props.match.params.id !== nextProps.match.params.id) {
+            console.log("1");
+            this.setState({
+                id: nextProps.match.params.id
+            }, () => {
+                ApiUtil.Get(`${Constant.URL_SEARCH}/${this.state.id}`,
+                    (res: ResponseModel) => {
+                        this.setState({
+                            article: res.article
+                        }, () => this.setState({ isLoading: false }))
+                    })
+            })
+        }
+    }
 }
 
 
@@ -69,5 +86,6 @@ export interface IProps extends RouteComponentProps<MatchParams> {
 }
 export interface IState {
     article: ArticleModel,
-    isLoading: boolean
+    isLoading: boolean,
+    id: string
 }
