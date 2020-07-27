@@ -1,5 +1,5 @@
 import { CalendarOutlined, ClockCircleOutlined, TagsOutlined } from '@ant-design/icons'
-import { Layout, Menu, Row, Typography } from 'antd'
+import { Menu, Row, Typography } from 'antd'
 import 'antd/dist/antd.css'
 import React from 'react'
 import { NavDataModel } from '../models/navDataModel'
