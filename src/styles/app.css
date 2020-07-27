@@ -1,14 +1,12 @@
-#components-layout-demo-side .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-}
-
 .site-layout .site-layout-background {
-  background: #fff;
   margin: "24px 16px";
   padding: 24;
   min-height: 280;
+}
+
+.header {
+  background: #fff;
+  flex-direction: row;
 }
 
 .App {
@@ -56,4 +54,11 @@ footer p a:hover {
 
 .header-row {
   padding-right: 15px;
+}
+
+.logo{
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  float: left;
 }
