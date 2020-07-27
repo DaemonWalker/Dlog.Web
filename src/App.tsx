@@ -81,14 +81,14 @@ class App extends React.Component<IProps, IState> {
                         </p>
                         <p>
                             Powered by
-              <a href="https://react.docschina.org/" target="_blank" >React</a>
-                            <a href="https://ant.design/index-cn" target="_blank" >Ant Desgin(antd)</a>
-                            <a href="https://dotnet.microsoft.com/" target="_blank">.Net Core</a>
-                            <a href="https://redis.io/" target="_blank">Redis</a>
-                            <a href="https://www.mongodb.com/" target="_blank">MongoDB</a>
-                            <a href="https://www.elastic.co/cn/" target="_blank">Elasticsearch</a>
-                            <a href="https://www.centos.org/" target="_blank">CentOS</a>
-                            <a href="https://www.docker.com/" target="_blank" >Docker</a>
+              <a href="https://react.docschina.org/" target="_blank" rel="noopener noreferrer">React</a>
+                            <a href="https://ant.design/index-cn" target="_blank" rel="noopener noreferrer">Ant Desgin(antd)</a>
+                            <a href="https://dotnet.microsoft.com/" target="_blank" rel="noopener noreferrer">.Net Core</a>
+                            <a href="https://redis.io/" target="_blank" rel="noopener noreferrer">Redis</a>
+                            <a href="https://www.mongodb.com/" target="_blank" rel="noopener noreferrer">MongoDB</a>
+                            <a href="https://www.elastic.co/cn/" target="_blank" rel="noopener noreferrer">Elasticsearch</a>
+                            <a href="https://www.centos.org/" target="_blank" rel="noopener noreferrer">CentOS</a>
+                            <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a>
                         </p>
                         <p>
                             <HyperLink href="http://www.beian.gov.cn/portal/registerSystemInfo" text="辽ICP备16008708号-1" target="_blank" />
