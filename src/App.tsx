@@ -95,7 +95,9 @@ class App extends React.Component<IProps, IState> {
                             <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a>
                         </p>
                         <p>
-                            <HyperLink href="http://www.beian.gov.cn/portal/registerSystemInfo" text="辽ICP备16008708号-1" target="_blank" />
+                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" >
+                                辽ICP备16008708号-1
+                            </a>
                         </p>
                     </Footer>
                 </Layout>
