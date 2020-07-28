@@ -22,6 +22,10 @@ export class ArticleSummaryList extends React.Component<IProps> {
                                     console.log(page);
                                 },
                                 pageSize: 10,
+                                hideOnSinglePage: true
+                            }}
+                            locale={{
+                                emptyText: "暂无数据"
                             }}
                             dataSource={this.props.articleSummaries}
                             renderItem={(item: ArticleSummaryModel) => (
@@ -32,7 +36,9 @@ export class ArticleSummaryList extends React.Component<IProps> {
                                     ]}
                                     extra={
                                         <img
-                                            width={272}
+                                            style={{
+                                                maxHeight: 112
+                                            }}
                                             alt="logo"
                                             src={ImageUtil.getSummary(item.url)}
                                         />

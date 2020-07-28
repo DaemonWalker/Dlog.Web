@@ -62,13 +62,17 @@ class App extends React.Component<IProps, IState> {
                         </Row>
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
-                            <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
-                            <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate() + Math.random()}></Tags>)} key="Tags" />
-                            <Route path="/article/:id?" render={(props) => (<Article {...props}></Article>)} />
-                            <Route path="/timeline/:id" component={ArticleTimeline} />
-                            <Route path="/search/:filter?" exact component={SearchResult} />
-                        </div>
+                        <Row justify="center">
+                            <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
+                                <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
+                                    <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
+                                    <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate() + Math.random()}></Tags>)} key="Tags" />
+                                    <Route path="/article/:id?" render={(props) => (<Article {...props}></Article>)} />
+                                    <Route path="/timeline/:id" component={ArticleTimeline} />
+                                    <Route path="/search/:filter?" exact component={SearchResult} />
+                                </div>
+                            </Col>
+                        </Row>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         <p>

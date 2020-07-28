@@ -28,6 +28,9 @@ export class SearchResult extends React.Component<IProps, IState> {
                             itemLayout="vertical"
                             size="large"
                             dataSource={this.state.searchResult}
+                            locale={{
+                                emptyText: "找不到你要的数据😭"
+                            }}
                             renderItem={
                                 item => (
                                     < List.Item
