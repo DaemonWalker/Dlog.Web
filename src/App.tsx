@@ -66,7 +66,7 @@ class App extends React.Component<IProps, IState> {
                             <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
                                 <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
                                     <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
-                                    <Route path="/tags/:id?" render={(props) => (<Tags {...props} key={new Date().getDate() + Math.random()}></Tags>)} key="Tags" />
+                                    <Route path="/tags/:id?" render={(props) => (<Tags {...props}></Tags>)} key="Tags" />
                                     <Route path="/article/:id?" render={(props) => (<Article {...props}></Article>)} />
                                     <Route path="/timeline/:id" component={ArticleTimeline} />
                                     <Route path="/search/:filter?" exact component={SearchResult} />
@@ -76,9 +76,9 @@ class App extends React.Component<IProps, IState> {
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         <p>
-                            <HyperLink href="https://github.com/DaemonWalker" text={(
+                            <a href="https://github.com/DaemonWalker" target="_blank" >
                                 <GithubOutlined style={{ fontSize: '3em' }} />
-                            )} target="_blank" />
+                            </a>
                         </p>
                         <p>
                             {`© ${new Date().getFullYear()} Daemon Walker`}

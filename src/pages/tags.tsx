@@ -11,7 +11,8 @@ export class Tags extends React.Component<IProps, IState>{
         super(props);
         this.state = {
             articles: [],
-            isLoading: true
+            isLoading: true,
+            id: ""
         };
     }
     render() {
@@ -33,6 +34,21 @@ export class Tags extends React.Component<IProps, IState>{
                 })
             });
     }
+    componentWillReceiveProps(nextProps: IProps) {
+        if (this.props?.match?.params?.id === undefined ||
+            this.props.match.params.id !== nextProps.match.params.id) {
+            this.setState({
+                id: nextProps.match.params.id
+            }, () => {
+                ApiUtil.Get(`${Constant.URL_SEARCH}/${this.state.id}`,
+                    (res: ResponseModel) => {
+                        this.setState({
+                            articles: res.articleSummaries
+                        })
+                    })
+            })
+        }
+    }
 }
 interface MatchParams {
     id: string;
@@ -40,5 +56,6 @@ interface MatchParams {
 export interface IProps extends RouteComponentProps<MatchParams> { }
 export interface IState {
     articles: ArticleSummaryModel[],
-    isLoading: boolean
+    isLoading: boolean,
+    id: string
 }
