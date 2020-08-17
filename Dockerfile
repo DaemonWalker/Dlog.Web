@@ -1,5 +1,5 @@
 # 使用node latest
-FROM node:latest
+FROM nginx
 
 # 代表生产环境
 ENV PROJECT_ENV production
@@ -8,13 +8,9 @@ ENV PROJECT_ENV production
 ENV NODE_ENV production
 ENV API_ADDRESS http://blogapi.daemonwow.com/
 ENV REACT_APP_API_ADDRESS http://blogapi.daemonwow.com/
-# 进入code文件夹，如果没有则会生成，并进入文件夹
-WORKDIR /code
-# 将当前内容 放入code文件夹
-ADD . /code
 
-# 执行指令
-RUN yarn install && yarn build && npm install -g http-server
+COPY ./build/ /usr/share/nginx/html/
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # 暴露容器端口 8080
 EXPOSE 8080
