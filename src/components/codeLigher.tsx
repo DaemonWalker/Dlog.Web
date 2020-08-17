@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { PrismLight } from 'react-syntax-highlighter';
+import { Prism } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class CodeLigher extends PureComponent<IProps> {
@@ -15,9 +15,9 @@ export class CodeLigher extends PureComponent<IProps> {
     render() {
         return (
             <figure className="highlight">
-                <PrismLight language={this.props.language} style={prism}>
+                <Prism language={this.props.language} style={prism}>
                     {this.props.value}
-                </PrismLight>
+                </Prism>
             </figure>
         )
     }
