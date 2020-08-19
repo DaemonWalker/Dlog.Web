@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
-# 使用node latest
-FROM node:latest
-=======
 # 使用nginx
 FROM nginx
->>>>>>> Stashed changes
 
 # 代表生产环境
 ENV PROJECT_ENV production
