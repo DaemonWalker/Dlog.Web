@@ -1,6 +1,8 @@
-import { Constant } from './constants'
 export class ImageUtil {
-    public static getSummary(articleId: string) {
-        return `${Constant.URL_BASE}blogs/${articleId}/summary.png`;
+    public static getImagePath(path: string) {
+        if (path.startsWith("/")) {
+            path = path.replace("/", "");
+        }
+        return `/images/${path}`;
     }
 }
