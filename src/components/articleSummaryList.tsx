@@ -40,7 +40,7 @@ export class ArticleSummaryList extends React.Component<IProps> {
                                                 maxHeight: 112
                                             }}
                                             alt="logo"
-                                            src={ImageUtil.getSummary(item.url)}
+                                            src={ImageUtil.getImagePath(item.cover)}
                                         />
                                     }
                                 >
