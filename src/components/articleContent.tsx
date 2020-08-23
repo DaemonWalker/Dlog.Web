@@ -14,13 +14,21 @@ export class ArticleContent extends React.Component<IProps> {
                         ) :
                         this.props.content
                 }
+                transformImageUri={(url: string) => {
+                    if (url.startsWith("/") === false) {
+                        return `/${url}`;
+                    }
+                    else {
+                        return url;
+                    }
+                }}
                 escapeHtml={false}
                 skipHtml={false}
                 renderers={{
                     code: CodeLigher
                 }}
-                className="markdown-body articleContent" 
-                />
+                className="markdown-body articleContent"
+            />
         )
     }
 }
