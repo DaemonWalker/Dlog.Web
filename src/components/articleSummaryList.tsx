@@ -13,7 +13,7 @@ export class ArticleSummaryList extends React.Component<IProps> {
         return (
             <>
                 {
-                    this.props.articleSummaries.length > 0 ?
+                    this.props.articleSummaries !== undefined && this.props.articleSummaries.length > 0 ?
                         <List
                             itemLayout="vertical"
                             size="large"
@@ -46,7 +46,7 @@ export class ArticleSummaryList extends React.Component<IProps> {
                                 >
                                     <List.Item.Meta
                                         avatar={<Avatar src={MyAvatar} />}
-                                        title={<HyperLink href={`article/${item.url}`} text={item.title} />} />
+                                        title={<HyperLink href={`/article/${item.url}`} text={item.title} />} />
                                     {item.summary}
                                 </List.Item>
                             )}

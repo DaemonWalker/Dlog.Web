@@ -8,7 +8,6 @@ import { ResponseModel } from './models/responseModel';
 import './styles/app.css';
 import { ApiUtil } from './utils/apiUtil';
 import { Constant } from './utils/constants';
-import { HyperLink } from './components/hyperLink';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Home } from './pages/home';
 import { Tags } from './pages/tags';
@@ -66,8 +65,8 @@ class App extends React.Component<IProps, IState> {
                             <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
                                 <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
                                     <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
-                                    <Route path="/tags/:id?" render={(props) => (<Tags {...props}></Tags>)} key="Tags" />
-                                    <Route path="/article/:id?" render={(props) => (<Article {...props}></Article>)} />
+                                    <Route path="/tags/:id?" exact render={(props) => (<Tags {...props}></Tags>)} key="Tags" />
+                                    <Route path="/article/:id?" exact render={(props) => (<Article {...props}></Article>)} />
                                     <Route path="/timeline/:id" component={ArticleTimeline} />
                                     <Route path="/search/:filter?" exact component={SearchResult} />
                                 </div>
@@ -76,7 +75,7 @@ class App extends React.Component<IProps, IState> {
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         <p>
-                            <a href="https://github.com/DaemonWalker" target="_blank" >
+                            <a href="https://github.com/DaemonWalker" target="_blank" rel="noopener noreferrer">
                                 <GithubOutlined style={{ fontSize: '3em' }} />
                             </a>
                         </p>
@@ -95,7 +94,7 @@ class App extends React.Component<IProps, IState> {
                             <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a>
                         </p>
                         <p>
-                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" >
+                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer">
                                 辽ICP备16008708号-1
                             </a>
                         </p>
