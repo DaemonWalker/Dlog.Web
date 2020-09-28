@@ -18,8 +18,7 @@ export class Navbar extends React.Component<IProps, IState> {
                     <Row justify="space-around" align="middle">
                         <HyperLink href="/" text={(
                             <Title level={3}>
-                                <Text type="danger">♥</Text>
-                                <Text type="warning">❀</Text>
+                                <span role="img" aria-label="jd">💊</span>
                             </Title>
                         )} />
                     </Row>

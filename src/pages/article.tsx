@@ -4,9 +4,10 @@ import { ArticleModel } from '../models/articleModel';
 import { ResponseModel } from '../models/responseModel';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
-import { Typography, Space, Tag } from 'antd';
+import { Typography, Space } from 'antd';
 import { Loading } from '../components/loading';
 import { ArticleContent } from '../components/articleContent'
+import { ArticleTag } from '../components/articleTag'
 const { Title, Text } = Typography;
 
 export class Article extends React.Component<IProps, IState> {
@@ -35,7 +36,7 @@ export class Article extends React.Component<IProps, IState> {
                             <Text type="secondary">{this.state.article.date}</Text>
                             <Space>
                                 {this.state.article?.tags.map((ele: string) => (
-                                    <Tag key={Math.random()}>{ele}</Tag>
+                                    <ArticleTag tagName={ele} />
                                 ))}
                             </Space>
                         </Space>
@@ -59,7 +60,7 @@ export class Article extends React.Component<IProps, IState> {
                 })
             })
     }
-    
+
     componentWillReceiveProps(nextProps: IProps) {
         if (this.props?.match?.params?.id === undefined ||
             this.props.match.params.id !== nextProps.match.params.id) {
