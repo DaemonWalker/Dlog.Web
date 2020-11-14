@@ -4,9 +4,8 @@ import 'antd/dist/antd.css'
 import React from 'react'
 import { NavDataModel } from '../models/navDataModel'
 import { HyperLink } from './hyperLink'
-
 const { SubMenu } = Menu;
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 export class Navbar extends React.Component<IProps, IState> {
 
