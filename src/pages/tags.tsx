@@ -1,61 +1,78 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router';
-import { ArticleSummaryModel } from '../models/articleSummaryModel';
 import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
 import { ResponseModel } from '../models/responseModel';
+import { TagArticlesModel } from '../models/tagArticlesModel';
+import { Loading } from '../components/loading';
+import { Collapse } from 'antd';
 import { ArticleSummaryList } from '../components/articleSummaryList';
+const { Panel } = Collapse;
 
 export class Tags extends React.Component<IProps, IState>{
     constructor(props: IProps) {
         super(props);
         this.state = {
-            articles: [],
-            isLoading: true,
-            id: ""
+            tags: [],
+            isLoading: true
         };
     }
     render() {
         return (
-            <ArticleSummaryList articleSummaries={this.state.articles} isLoading={this.state.isLoading}></ArticleSummaryList>
+            this.state.tags.length === 0 ?
+                <Loading isLoading={this.state.isLoading}></Loading> :
+                <Collapse accordion={true} onChange={this.fetchArticles.bind(this)}>
+                    {
+                        this.state.tags.map((ele: TagArticlesModel, index: number) => {
+                            return (
+                                <Panel header={ele.tagName} key={`${ele.tagName}`}>
+                                    <ArticleSummaryList
+                                        articleSummaries={ele.articles}
+                                        isLoading={ele.articles.length === 0}
+                                        isSimpleMode={true}
+                                    />
+                                </Panel>)
+                        })
+                    }
+                </Collapse>
         )
     }
-
     componentDidMount() {
-        ApiUtil.Post(Constant.URL_TAGARTICLES,
-            this.props.match.params.id,
+        ApiUtil.Get(Constant.URL_TAGS,
             (res: ResponseModel) => {
+                var array = new Array<TagArticlesModel>();
+                for (let tag of res.tags) {
+                    array.push({ tagName: tag, articles: [] });
+                }
                 this.setState({
-                    articles: res.articleSummaries
-                }, () => {
-                    this.setState({
-                        isLoading: false
-                    })
+                    tags: array,
+                    isLoading: false
                 })
-            });
-    }
-    componentWillReceiveProps(nextProps: IProps) {
-        if (this.props?.match?.params?.id === undefined ||
-            this.props.match.params.id !== nextProps.match.params.id) {
-            this.setState({
-                id: nextProps.match.params.id
-            }, () => {
-                ApiUtil.Get(`${Constant.URL_SEARCH}/${this.state.id}`,
-                    (res: ResponseModel) => {
-                        this.setState({
-                            articles: res.articleSummaries
-                        })
-                    })
             })
+    }
+    fetchArticles(key: string | string[]): void {
+        let tags = this.state.tags;
+        let targetTag: TagArticlesModel;
+        for (let tag of tags) {
+            if (tag.tagName === key) {
+                targetTag = tag;
+                if (tag.articles.length !== 0) {
+                    return;
+                }
+            }
         }
+        ApiUtil.Post(Constant.URL_TAGARTICLES, key,
+            (res: ResponseModel) => {
+                targetTag.articles = res.articleSummaries;
+                this.setState({
+                    tags: tags
+                })
+            })
+
     }
 }
-interface MatchParams {
-    id: string;
+export interface IProps {
 }
-export interface IProps extends RouteComponentProps<MatchParams> { }
 export interface IState {
-    articles: ArticleSummaryModel[],
-    isLoading: boolean,
-    id: string
+    tags: TagArticlesModel[],
+    isLoading: boolean
 }

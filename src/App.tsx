@@ -65,7 +65,7 @@ class App extends React.Component<IProps, IState> {
                             <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
                                 <div className="site-layout-background app-container" style={{ padding: 24, minHeight: 360 }}>
                                     <Route path="/" exact render={(props) => (<Home {...props} key={new Date().getDate() + Math.random()}></Home>)} component={Home} />
-                                    <Route path="/tags/:id?" exact render={(props) => (<Tags {...props}></Tags>)} key="Tags" />
+                                    <Route path="/tags/:id?" exact render={(props) => (<Tags {...props} />)} key="Tags" />
                                     <Route path="/article/:id?" exact render={(props) => (<Article {...props}></Article>)} />
                                     <Route path="/timeline/:id" component={ArticleTimeline} />
                                     <Route path="/search/:filter?" exact component={SearchResult} />

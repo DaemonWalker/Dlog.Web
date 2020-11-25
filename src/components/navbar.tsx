@@ -34,17 +34,9 @@ export class Navbar extends React.Component<IProps, IState> {
                             }
                         </Menu.ItemGroup>
                     </SubMenu>
-                    <SubMenu key="sub2" icon={<TagsOutlined />} title="标签">
-                        <Menu.ItemGroup>
-                            {
-                                this.props.data.tags.map(e => (
-                                    <Menu.Item key={new Date().getDate() + Math.random()}>
-                                        <HyperLink href={`/tags/${e.url}`} text={e.content} />
-                                    </Menu.Item>
-                                ))
-                            }
-                        </Menu.ItemGroup>
-                    </SubMenu>
+                    <Menu.Item key="sub2" icon={<TagsOutlined />} >
+                        <HyperLink href={`/tags`} text="标签" />
+                    </Menu.Item>
                     <SubMenu key="sub3" icon={<CalendarOutlined />} title="时间">
                         <Menu.ItemGroup>
                             {

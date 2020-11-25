@@ -4,6 +4,7 @@ import { NavDataModel } from './navDataModel'
 import { ServerResponseModel } from './serverResponseModel'
 import { TimelineNodeModel } from './timelineNodeModel'
 import { SearchResultModel } from './searchResultModel'
+import { TagArticlesModel } from './tagArticlesModel'
 
 export interface ResponseModel {
     serverResponse: ServerResponseModel;
@@ -12,5 +13,6 @@ export interface ResponseModel {
     articleSummaries: ArticleSummaryModel[];
     timeLine: TimelineNodeModel[];
     article: ArticleModel;
-    searchResult: SearchResultModel[]
+    searchResult: SearchResultModel[];
+    tags: string[];
 }

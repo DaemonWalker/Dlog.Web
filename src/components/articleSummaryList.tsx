@@ -18,9 +18,6 @@ export class ArticleSummaryList extends React.Component<IProps> {
                             itemLayout="vertical"
                             size="large"
                             pagination={{
-                                onChange: (page: number) => {
-                                    console.log(page);
-                                },
                                 pageSize: 10,
                                 hideOnSinglePage: true
                             }}
@@ -31,17 +28,13 @@ export class ArticleSummaryList extends React.Component<IProps> {
                             renderItem={(item: ArticleSummaryModel) => (
                                 <List.Item
                                     key={item.title}
-                                    actions={[
-                                        <ArticleStatics icon={EyeOutlined} number={item.seen} key="list-vertical-star-o" />
-                                    ]}
+                                    actions={
+                                        this.props.isSimpleMode ?
+                                            [] :
+                                            [<ArticleStatics icon={EyeOutlined} number={item.seen} key="list-vertical-star-o" />]
+                                    }
                                     extra={
-                                        <img
-                                            style={{
-                                                maxHeight: 112
-                                            }}
-                                            alt="logo"
-                                            src={ImageUtil.getImagePath(item.cover)}
-                                        />
+                                        <img style={{ maxHeight: 112 }} alt="logo" src={ImageUtil.getImagePath(item.cover)} />
                                     }
                                 >
                                     <List.Item.Meta
@@ -59,7 +52,10 @@ export class ArticleSummaryList extends React.Component<IProps> {
     }
 }
 
-export interface IProps {
+type IProps = {
     articleSummaries: ArticleSummaryModel[],
-    isLoading: boolean
+    isLoading: boolean,
+} & Partial<typeof defultProps>
+const defultProps = {
+    isSimpleMode: false
 }
