@@ -43,7 +43,6 @@ class App extends React.Component<IProps, IState> {
         return (
             <BrowserRouter>
                 <Helmet>
-                    <meta name="google-site-verification" content="0E51hJeoDkEjXN0YywLG_j3NbYfKqF4AEI5BcHbNDzo" />
                     <meta charSet="utf-8" />
                     <link rel="apple-touch-icon" href="/logo192.png" />
                 </Helmet>
