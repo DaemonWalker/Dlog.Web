@@ -21,22 +21,24 @@ export class Tags extends React.Component<IProps, IState>{
         return (
             <>
                 <PageTitle title="标签们"></PageTitle>
-                this.state.tags.length === 0 ?
-                <Loading isLoading={this.state.isLoading}></Loading> :
-                <Collapse accordion={true} onChange={this.fetchArticles.bind(this)}>
-                    {
-                        this.state.tags.map((ele: TagArticlesModel, index: number) => {
-                            return (
-                                <Panel header={ele.tagName} key={`${ele.tagName}`}>
-                                    <ArticleSummaryList
-                                        articleSummaries={ele.articles}
-                                        isLoading={ele.articles.length === 0}
-                                        isSimpleMode={true}
-                                    />
-                                </Panel>)
-                        })
-                    }
-                </Collapse>
+                {
+                    this.state.tags.length === 0 ?
+                        <Loading isLoading={this.state.isLoading}></Loading> :
+                        <Collapse accordion={true} onChange={this.fetchArticles.bind(this)}>
+                            {
+                                this.state.tags.map((ele: TagArticlesModel, index: number) => {
+                                    return (
+                                        <Panel header={ele.tagName} key={`${ele.tagName}`}>
+                                            <ArticleSummaryList
+                                                articleSummaries={ele.articles}
+                                                isLoading={ele.articles.length === 0}
+                                                isSimpleMode={true}
+                                            />
+                                        </Panel>)
+                                })
+                            }
+                        </Collapse>
+                }
             </>
         )
     }
