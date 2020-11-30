@@ -7,6 +7,7 @@ import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
 import { Loading } from '../components/loading'
 import { HyperLink } from '../components/hyperLink';
+import { PageTitle } from '../components/pageTitle';
 
 export class ArticleTimeline extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -19,7 +20,7 @@ export class ArticleTimeline extends React.Component<IProps, IState> {
     render() {
         return (
             <div>
-
+                <PageTitle title={`时间线_${this.props.match.params.id}`}></PageTitle>
                 <Timeline mode="left">
                     {
                         this.state.timeline.map((ele: TimelineNodeModel) => {

@@ -6,6 +6,7 @@ import { TagArticlesModel } from '../models/tagArticlesModel';
 import { Loading } from '../components/loading';
 import { Collapse } from 'antd';
 import { ArticleSummaryList } from '../components/articleSummaryList';
+import { PageTitle } from '../components/pageTitle';
 const { Panel } = Collapse;
 
 export class Tags extends React.Component<IProps, IState>{
@@ -18,7 +19,9 @@ export class Tags extends React.Component<IProps, IState>{
     }
     render() {
         return (
-            this.state.tags.length === 0 ?
+            <>
+                <PageTitle title="标签们"></PageTitle>
+                this.state.tags.length === 0 ?
                 <Loading isLoading={this.state.isLoading}></Loading> :
                 <Collapse accordion={true} onChange={this.fetchArticles.bind(this)}>
                     {
@@ -34,6 +37,7 @@ export class Tags extends React.Component<IProps, IState>{
                         })
                     }
                 </Collapse>
+            </>
         )
     }
     componentDidMount() {

@@ -8,6 +8,7 @@ import { Typography, Space } from 'antd';
 import { Loading } from '../components/loading';
 import { ArticleContent } from '../components/articleContent'
 import { ArticleTag } from '../components/articleTag'
+import { PageTitle } from '../components/pageTitle'
 const { Title, Text } = Typography;
 
 export class Article extends React.Component<IProps, IState> {
@@ -27,22 +28,24 @@ export class Article extends React.Component<IProps, IState> {
     }
     render() {
         return (
-            <div className="article-panel">{
-                this.state.isLoading ?
-                    <Loading isLoading={this.state.isLoading}></Loading> :
-                    <>
-                        <Title>{this.state.article.title}</Title>
-                        <Space size="large">
-                            <Text type="secondary">{this.state.article.date}</Text>
-                            <Space>
-                                {this.state.article?.tags.map((ele: string) => (
-                                    <ArticleTag tagName={ele} />
-                                ))}
+            <div className="article-panel">
+                <PageTitle title={this.state?.article?.title} />
+                {
+                    this.state.isLoading ?
+                        <Loading isLoading={this.state.isLoading}></Loading> :
+                        <>
+                            <Title>{this.state.article.title}</Title>
+                            <Space size="large">
+                                <Text type="secondary">{this.state.article.date}</Text>
+                                <Space>
+                                    {this.state.article?.tags.map((ele: string) => (
+                                        <ArticleTag tagName={ele} key={ele}/>
+                                    ))}
+                                </Space>
                             </Space>
-                        </Space>
-                        <ArticleContent content={this.state.article.content}></ArticleContent>
-                    </>
-            }
+                            <ArticleContent content={this.state.article.content}></ArticleContent>
+                        </>
+                }
             </div>
         )
     }
@@ -62,13 +65,14 @@ export class Article extends React.Component<IProps, IState> {
     }
 
     componentWillReceiveProps(nextProps: IProps) {
+        
         if (this.props?.match?.params?.id === undefined ||
             this.props.match.params.id !== nextProps.match.params.id) {
-            console.log("1");
             this.setState({
                 id: nextProps.match.params.id
             }, () => {
-                ApiUtil.Get(`${Constant.URL_SEARCH}/${this.state.id}`,
+                ApiUtil.Get(
+                    `${Constant.URL_ARTICLE}?id=${this.props.match.params.id}`,
                     (res: ResponseModel) => {
                         this.setState({
                             article: res.article

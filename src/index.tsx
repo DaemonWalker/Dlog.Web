@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-document.title = "精灵の小小窝"
 ReactDOM.render(
   <App >
   </App>,

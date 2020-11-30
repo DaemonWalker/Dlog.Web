@@ -4,6 +4,7 @@ import { ApiUtil } from '../utils/apiUtil';
 import { Constant } from '../utils/constants';
 import { ArticleSummaryModel } from '../models/articleSummaryModel';
 import { ArticleSummaryList } from '../components/articleSummaryList'
+import { PageTitle } from '../components/pageTitle';
 
 export class Home extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -16,6 +17,7 @@ export class Home extends React.Component<IProps, IState> {
     render() {
         return (
             <>
+                <PageTitle title=""></PageTitle>
                 <ArticleSummaryList articleSummaries={this.state.listData} isLoading={this.state.isLoading}></ArticleSummaryList>
             </>
         )

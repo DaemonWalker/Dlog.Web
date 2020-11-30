@@ -7,6 +7,7 @@ import { Constant } from '../utils/constants';
 import { ResponseModel } from '../models/responseModel';
 import { RouteComponentProps } from 'react-router';
 import { HyperLink } from '../components/hyperLink';
+import { PageTitle } from '../components/pageTitle';
 
 export class SearchResult extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -21,6 +22,7 @@ export class SearchResult extends React.Component<IProps, IState> {
     render() {
         return (
             <>
+                <PageTitle title={`关于(${this.props.match.params.filter})`}></PageTitle>
                 {
                     this.state.isLoading ?
                         <Loading isLoading={this.state.isLoading}></Loading> :

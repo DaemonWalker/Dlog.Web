@@ -14,6 +14,7 @@ import { Tags } from './pages/tags';
 import { Article } from './pages/article';
 import { ArticleTimeline } from './pages/articleTimeline';
 import { SearchResult } from './pages/searchResult'
+import { Helmet } from 'react-helmet'
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -41,6 +42,11 @@ class App extends React.Component<IProps, IState> {
     render() {
         return (
             <BrowserRouter>
+                <Helmet>
+                    <meta name="google-site-verification" content="0E51hJeoDkEjXN0YywLG_j3NbYfKqF4AEI5BcHbNDzo" />
+                    <meta charSet="utf-8" />
+                    <link rel="apple-touch-icon" href="/logo192.png" />
+                </Helmet>
                 <Layout className="App">
                     <Header className="site-layout-background header" style={{ padding: 0 }} >
                         <Row>
