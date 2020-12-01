@@ -280,6 +280,12 @@ module.exports = function (webpackEnv) {
                         priority: 4,
                         name: 'vendors'
                     },
+                    bullShit: {
+                        chunks: "all",
+                        test: /bullShit/,
+                        priority: 4,
+                        name: "bullShit"
+                    },
                     code: {
                         chunks: "all",
                         test: /src/,

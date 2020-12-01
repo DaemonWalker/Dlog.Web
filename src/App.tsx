@@ -15,6 +15,7 @@ import { Article } from './pages/article';
 import { ArticleTimeline } from './pages/articleTimeline';
 import { SearchResult } from './pages/searchResult'
 import { Helmet } from 'react-helmet'
+import { Diary } from './pages/diary'
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -74,6 +75,7 @@ class App extends React.Component<IProps, IState> {
                                     <Route path="/article/:id?" exact render={(props) => (<Article {...props}></Article>)} />
                                     <Route path="/timeline/:id" component={ArticleTimeline} />
                                     <Route path="/search/:filter?" exact component={SearchResult} />
+                                    <Route path="/diary/:id?" exact component={Diary} />
                                 </div>
                             </Col>
                         </Row>
