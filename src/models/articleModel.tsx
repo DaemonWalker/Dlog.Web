@@ -4,4 +4,5 @@ export interface ArticleModel {
     title: string;
     date: string;
     seen: number;
+    summary: string;
 }

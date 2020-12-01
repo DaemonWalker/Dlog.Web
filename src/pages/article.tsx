@@ -20,7 +20,8 @@ export class Article extends React.Component<IProps, IState> {
                 tags: [],
                 title: "",
                 date: "",
-                seen: 0
+                seen: 0,
+                summary: ""
             },
             isLoading: true,
             id: ""
@@ -29,7 +30,7 @@ export class Article extends React.Component<IProps, IState> {
     render() {
         return (
             <div className="article-panel">
-                <PageTitle title={this.state?.article?.title} />
+                <PageTitle title={this.state?.article?.title} description={this.state?.article?.summary} />
                 {
                     this.state.isLoading ?
                         <Loading isLoading={this.state.isLoading}></Loading> :
@@ -39,7 +40,7 @@ export class Article extends React.Component<IProps, IState> {
                                 <Text type="secondary">{this.state.article.date}</Text>
                                 <Space>
                                     {this.state.article?.tags.map((ele: string) => (
-                                        <ArticleTag tagName={ele} key={ele}/>
+                                        <ArticleTag tagName={ele} key={ele} />
                                     ))}
                                 </Space>
                             </Space>
@@ -65,7 +66,7 @@ export class Article extends React.Component<IProps, IState> {
     }
 
     componentWillReceiveProps(nextProps: IProps) {
-        
+
         if (this.props?.match?.params?.id === undefined ||
             this.props.match.params.id !== nextProps.match.params.id) {
             this.setState({

@@ -8,6 +8,7 @@ export class PageTitle extends React.Component<IProps> {
             <>
                 <Helmet>
                     <title>{this.getTitle()}</title>
+                    <meta name="decription" content={this.props.description} />
                 </Helmet>
             </>
         )
@@ -21,6 +22,11 @@ export class PageTitle extends React.Component<IProps> {
         }
     }
 }
-interface IProps {
-    title: string
+
+const defultProps = {
+    description: ""
 }
+
+type IProps = {
+    title: string
+} & Partial<typeof defultProps>
